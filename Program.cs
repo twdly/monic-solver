@@ -9,7 +9,6 @@ namespace nonmonicsolver
             int multiply = 0;
             int addition = 0;
             int coefficient = 0;
-            bool mulitplyIsNegative = false;
 
             Console.WriteLine("\nWhat should it multiply to?");
             string x = Console.ReadLine();
@@ -18,7 +17,6 @@ namespace nonmonicsolver
             Console.WriteLine("\nDoes x^2 have a coefficient?");
             string z = Console.ReadLine();
 
-            int candidate = 1;
             int.TryParse(x, out multiply);
             int.TryParse(y, out addition);
             if (int.TryParse(z, out coefficient))
@@ -26,9 +24,26 @@ namespace nonmonicsolver
                 multiply = multiply * coefficient;
             }
 
-            if (multiply < 0)
+            if (Solve(multiply, addition) is (int a, int b))
             {
-                mulitplyIsNegative = true;
+                Console.WriteLine($"\nThe two numbers are {a} and {b}");
+            }
+            else
+            {
+                Console.WriteLine("\nDoesn't work. Sda.");
+            }
+
+            Console.WriteLine("Press enter to exit");
+            Console.ReadLine();
+        }
+
+        static (int, int)? Solve(int multiply, int addition)
+        {
+            int candidate = 1;
+            bool mulitplyIsNegative = multiply < 0;
+
+            if (mulitplyIsNegative)
+            {
                 candidate = -1;
             }
 
@@ -36,10 +51,7 @@ namespace nonmonicsolver
             {
                 if (multiply % candidate == 0 && candidate + (multiply / candidate) == addition)
                 {
-                    Console.WriteLine($"\nThe two numbers are {candidate} and {(multiply / candidate)}");
-                    Console.WriteLine("Press enter to exit");
-                    Console.ReadLine();
-                    return;
+                    return (candidate, multiply / candidate);
                 }
                 else
                 {
@@ -69,10 +81,7 @@ namespace nonmonicsolver
                     }
                     else
                     {
-                        Console.WriteLine("\nDoesn't work. Sda.");
-                        Console.WriteLine("Press enter to exit");
-                        Console.ReadLine();
-                        break;
+                        return null;
                     }
                 }
             }
