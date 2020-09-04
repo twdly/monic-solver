@@ -9,7 +9,7 @@ namespace nonmonicsolver
             int multiply = 0;
             int addition = 0;
             int coefficient = 0;
-            bool mulitplyIsNegative = false;
+            bool multiplyIsNegative = false;
 
             Console.WriteLine("\nWhat should it multiply to?");
             string x = Console.ReadLine();
@@ -28,7 +28,7 @@ namespace nonmonicsolver
 
             if (multiply < 0)
             {
-                mulitplyIsNegative = true;
+                multiplyIsNegative = true;
                 candidate = -1;
             }
 
@@ -43,27 +43,27 @@ namespace nonmonicsolver
                 }
                 else
                 {
-                    if (candidate < multiply && candidate > 0 && !mulitplyIsNegative)
+                    if (candidate < multiply && candidate > 0 && !multiplyIsNegative)
                     {
                         candidate++;
                     }
-                    else if (candidate > -multiply && candidate < 0 && !mulitplyIsNegative)
+                    else if (candidate > -multiply && candidate < 0 && !multiplyIsNegative)
                     {
                         candidate--;
                     }
-                    else if (candidate > 0 && !mulitplyIsNegative)
+                    else if (candidate > 0 && !multiplyIsNegative)
                     {
                         candidate = -1;
                     }
-                    else if (candidate > multiply && candidate < 0 && mulitplyIsNegative)
+                    else if (candidate > multiply && candidate < 0 && multiplyIsNegative)
                     {
                         candidate--;
                     }
-                    else if (candidate < -multiply && candidate > 0 && mulitplyIsNegative)
+                    else if (candidate < -multiply && candidate > 0 && multiplyIsNegative)
                     {
                         candidate++;
                     }
-                    else if (candidate < 0 && mulitplyIsNegative)
+                    else if (candidate < 0 && multiplyIsNegative)
                     {
                         candidate = 1;
                     }
